@@ -78,9 +78,9 @@ def get_median(sorted_list):
     else:
         return sorted_list[n//2]
 
-if __name__ == "__main__":
+def create_tree():
     root = None
-    input_values = input("nodes > ").split()
+    input_values = input("Wprowadź liczby oddzielone spacją: ").split()
     input_values = list(map(int, input_values))
     
     for val in input_values:
@@ -89,5 +89,5 @@ if __name__ == "__main__":
     sorted_list = get_sorted_list(root)
     median = get_median(sorted_list)
 
-    print("Sorted:", sorted_list)
-    print("Median:", median)
+    print("Posortowana lista:", sorted_list)
+    print("Mediana:", median)
