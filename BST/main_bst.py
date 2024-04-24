@@ -5,15 +5,12 @@ from Operations.post_order import post_order_traversal
 
 def handle_choice(choice, root):
     if choice == "1" or choice == "1.":
-        print("Option Print selected\nWaiting for input...\n> ", end='')
-        tab = input()
-        numbers = [int(x) for x in tab.split(",")]
-        root = build_bst(numbers)
-
-        print("\nPre-order traversal: ", end='')
-        pre_order_traversal(root)
+        print("Option Print selected")
+              
         print("\nIn-order traversal: ", end='')
         in_order_traversal(root)
+        print("\nPre-order traversal: ", end='')
+        pre_order_traversal(root)
         print("\nPost-order traversal: ", end='')
         post_order_traversal(root)
 
@@ -43,6 +40,11 @@ def handle_choice(choice, root):
 if __name__ == "__main__":
     root = None
 
+    print("BST Tree Selected\nWaiting for input...\n> ", end='')
+    tab = input()
+    numbers = [int(x) for x in tab.split(",")]
+    root = build_bst(numbers)
+    
     while True:
         print("Enter number of your choice: (1. Print, 2. Remove, 3. Delte, 4. Export, 5. Rebalance, 6. Exit)\n> ", end='')
         choice = input()
