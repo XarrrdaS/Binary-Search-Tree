@@ -1,4 +1,4 @@
-from BST.build_bst import build_bst
+from Operations.build_bst import build_bst
 
 if __name__ == "__main__":
 
