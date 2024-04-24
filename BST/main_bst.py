@@ -2,6 +2,7 @@ from Operations.build_bst import build_bst
 from Operations.in_order import in_order_traversal
 from Operations.pre_order import pre_order_traversal
 from Operations.post_order import post_order_traversal
+import re
 
 def handle_choice(choice, root):
     if choice == "1" or choice == "1.":
@@ -42,7 +43,9 @@ if __name__ == "__main__":
 
     print("BST Tree Selected\nWaiting for input...\n> ", end='')
     tab = input()
-    numbers = [int(x) for x in tab.split(",")]
+
+    numbers = [int(x) for x in re.split(r'[\s,]+', tab)]
+    print(numbers)
     root = build_bst(numbers)
     
     while True:
