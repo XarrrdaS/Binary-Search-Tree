@@ -3,6 +3,8 @@ from Operations.in_order import in_order_traversal
 from Operations.pre_order import pre_order_traversal
 from Operations.post_order import post_order_traversal
 from Operations.remove import remove
+from Operations.deleteall import delete
+from Operations.rebalance import rebalance
 import re
 
 def handle_choice(choice, root):
@@ -27,12 +29,14 @@ def handle_choice(choice, root):
 
     elif choice == "3" or choice == "3.":
         print("Option Delete selected")
+        root = delete(root)
 
     elif choice == "4" or choice == "4.":
         print("Option Export selected")
 
     elif choice == "5" or choice == "5.":
         print("Option Rebalance selected")
+        root = rebalance(root)
 
     elif choice == "6" or choice == "6.":
         print("Option Exit selected")
