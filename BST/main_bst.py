@@ -3,15 +3,11 @@ from Operations.in_order import in_order_traversal
 from Operations.pre_order import pre_order_traversal
 from Operations.post_order import post_order_traversal
 
-if __name__ == "__main__":
-    print("Enter number of your choice: (1. Print, 2. Remove, 3. Delte, 4. Export, 5. Rebalance, 6. Exit)\n> ", end='')
-    choice = input()
-
+def handle_choice(choice, root):
     if choice == "1" or choice == "1.":
         print("Option Print selected\nWaiting for input...\n> ", end='')
         tab = input()
         numbers = [int(x) for x in tab.split(",")]
-
         root = build_bst(numbers)
 
         print("\nPre-order traversal: ", end='')
@@ -22,7 +18,7 @@ if __name__ == "__main__":
         post_order_traversal(root)
 
         print("\n")
-        
+
     elif choice == "2" or choice == "2.":
         print("Option Remove selected")
 
@@ -37,6 +33,19 @@ if __name__ == "__main__":
 
     elif choice == "6" or choice == "6.":
         print("Option Exit selected")
+        return False
 
     else:
         print("Invalid choice")
+
+    return True
+
+if __name__ == "__main__":
+    root = None
+
+    while True:
+        print("Enter number of your choice: (1. Print, 2. Remove, 3. Delte, 4. Export, 5. Rebalance, 6. Exit)\n> ", end='')
+        choice = input()
+
+        if not handle_choice(choice, root):
+            break
