@@ -2,6 +2,7 @@ from Operations.build_bst import build_bst
 from Operations.in_order import in_order_traversal
 from Operations.pre_order import pre_order_traversal
 from Operations.post_order import post_order_traversal
+from Operations.remove import remove
 import re
 
 def handle_choice(choice, root):
@@ -18,7 +19,11 @@ def handle_choice(choice, root):
         print("\n")
 
     elif choice == "2" or choice == "2.":
-        print("Option Remove selected")
+        print("Option Remove selected\nWaiting for input...\n> ", end='')
+        tab = input()
+
+        elements = [int(x) for x in re.split(r'[\s,]+', tab) if x]
+        root = remove(root, elements)
 
     elif choice == "3" or choice == "3.":
         print("Option Delete selected")
