@@ -80,7 +80,7 @@ def get_median(sorted_list):
 
 if __name__ == "__main__":
     root = None
-    input_values = input("Wprowadź liczby oddzielone spacją: ").split()
+    input_values = input("Wprowadź liczby: ").split()
     input_values = list(map(int, input_values))
     
     for val in input_values:
