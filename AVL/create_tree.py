@@ -49,21 +49,30 @@ def insert(root, key):
 
     balance_factor = balance(root)
 
-    if balance_factor > 1:
-        if key < root['left']['key']:
-            return rotate_right(root)
-        else:
-            root['left'] = rotate_left(root['left'])
-            return rotate_right(root)
+    if balance_factor > 1 and key < root['left']['key']:
+        return rotate_right(root)
 
-    if balance_factor < -1:
-        if key > root['right']['key']:
-            return rotate_left(root)
-        else:
-            root['right'] = rotate_right(root['right'])
-            return rotate_left(root)
+    if balance_factor < -1 and key > root['right']['key']:
+        return rotate_left(root)
+
+    if balance_factor > 1 and key > root['left']['key']:
+        root['left'] = rotate_left(root['left'])
+        return rotate_right(root)
+
+    if balance_factor < -1 and key < root['right']['key']:
+        root['right'] = rotate_right(root['right'])
+        return rotate_left(root)
 
     return root
+
+# sort the tree in order
+def in_order(node):
+    result = []
+    if node:
+        result.extend(in_order(node['left']))
+        result.append(node['key'])
+        result.extend(in_order(node['right']))
+    return result
 
 # sort the tree in pre-order
 def pre_order(node):
@@ -83,15 +92,6 @@ def post_order(node):
         result.append(node['key'])
     return result
 
-# sort the tree in order
-def in_order(node):
-    result = []
-    if node:
-        result.extend(in_order(node['left']))
-        result.append(node['key'])
-        result.extend(in_order(node['right']))
-    return result
-
 # sorted tree
 def get_sorted_list(node):
     return in_order(node)
@@ -104,15 +104,15 @@ def get_median(sorted_list):
     else:
         return sorted_list[n//2]
 
-# creating an AVL tree
+# creating an AVL
 def create_tree():
     root = None
-    
     input_values = input("nodes > ").split()
     input_values = list(map(int, input_values))
-
+    
     for val in input_values:
         root = insert(root, val)
+    
     sorted_list = get_sorted_list(root)
     median = get_median(sorted_list)
 
