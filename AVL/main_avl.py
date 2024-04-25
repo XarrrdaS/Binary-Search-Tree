@@ -1,7 +1,6 @@
 from .create_tree import create_tree, pre_order, in_order, post_order
 from .Operations.minmax import find_min, find_max
 from .Operations.delete import delete
-from .Operations.exit import exit_func
 from .Operations.export import export
 from .Operations.rebalance import rebalance
 from .Operations.remove import remove
@@ -38,6 +37,6 @@ def main_func_avl():
             print("Max value:", max_value)
         
         elif choice == '7':
-            exit_func()
+            return False
         else:
             print("Select a valid option!")
