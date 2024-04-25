@@ -60,16 +60,32 @@ def insert(root, key):
 
     return root
 
-def in_order_traversal(root):
+def in_order(node):
     result = []
-    if root:
-        result.extend(in_order_traversal(root['left']))
-        result.append(root['key'])
-        result.extend(in_order_traversal(root['right']))
+    if node:
+        result.extend(in_order(node['left']))
+        result.append(node['key'])
+        result.extend(in_order(node['right']))
     return result
 
-def get_sorted_list(root):
-    return in_order_traversal(root)
+def pre_order(node):
+    result = []
+    if node:
+        result.append(node['key'])
+        result.extend(pre_order(node['left']))
+        result.extend(pre_order(node['right']))
+    return result
+
+def post_order(node):
+    result = []
+    if node:
+        result.extend(post_order(node['left']))
+        result.extend(post_order(node['right']))
+        result.append(node['key'])
+    return result
+
+def get_sorted_list(node):
+    return in_order(node)
 
 def get_median(sorted_list):
     n = len(sorted_list)
@@ -91,3 +107,4 @@ def create_tree():
 
     print("Sorted:", sorted_list)
     print("Median:", median)
+    return root
