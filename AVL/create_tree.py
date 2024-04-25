@@ -1,13 +1,16 @@
+# check the height of the node
 def height(node):
     if not node:
         return 0
     return node['height']
 
+# check the balance of left and right subtree
 def balance(node):
     if not node:
         return 0
     return height(node['left']) - height(node['right'])
 
+# rotate the node to the right in order to balance it
 def rotate_right(y):
     x = y['left']
     T2 = x['right']
@@ -20,6 +23,7 @@ def rotate_right(y):
 
     return x
 
+# rotate the node to the left in order to balance it
 def rotate_left(x):
     y = x['right']
     T2 = y['left']
@@ -32,6 +36,7 @@ def rotate_left(x):
 
     return y
 
+# insert a new node in the tree to the right root
 def insert(root, key):
     if not root:
         return {'key': key, 'left': None, 'right': None, 'height': 1}
@@ -60,6 +65,7 @@ def insert(root, key):
 
     return root
 
+# sort the tree in order
 def in_order(node):
     result = []
     if node:
@@ -68,6 +74,7 @@ def in_order(node):
         result.extend(in_order(node['right']))
     return result
 
+# sort the tree in pre-order
 def pre_order(node):
     result = []
     if node:
@@ -76,6 +83,7 @@ def pre_order(node):
         result.extend(pre_order(node['right']))
     return result
 
+# sort the tree in post-order
 def post_order(node):
     result = []
     if node:
@@ -84,9 +92,11 @@ def post_order(node):
         result.append(node['key'])
     return result
 
+# sorted tree
 def get_sorted_list(node):
     return in_order(node)
 
+# get the median of the sorted array
 def get_median(sorted_list):
     n = len(sorted_list)
     if n % 2 == 0:
@@ -94,6 +104,7 @@ def get_median(sorted_list):
     else:
         return sorted_list[n//2]
 
+# creating an AVL tree
 def create_tree():
     root = None
     input_values = input("nodes > ").split()
