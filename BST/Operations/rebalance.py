@@ -1,26 +1,45 @@
+def tree_to_vine(root):
+    vine_tail = [None, None, None]
+    remainder = vine_tail
+    temp_node = None
+
+    while remainder is not None:
+        if remainder[1] is None:
+            vine_tail = remainder
+            remainder = remainder[2]
+        else:
+            temp_node = remainder[1]
+            remainder[1] = temp_node[2]
+            temp_node[2] = remainder
+            remainder = temp_node
+            vine_tail[2] = temp_node
+
+    return vine_tail[2]
+
+def compression(root, count):
+    scanner = root
+    for _ in range(count):
+        child = scanner[2]
+        scanner[2] = child[2]
+        scanner = scanner[2]
+        child[2] = scanner[1]
+        scanner[1] = child
+
 def rebalance(root):
-    nodes = []
-    inorder_traversal(root, nodes)
+    vine = tree_to_vine(root)
+    node_count = 0
+    temp = vine
 
-    return build_balanced_tree(nodes, 0, len(nodes) - 1)
+    while temp is not None:
+        node_count += 1
+        temp = temp[2]
 
-def inorder_traversal(node, nodes):
-    if node is None or 'value' not in node:
-        return
+    leaf_count = node_count + 1 - 2 ** (node_count.bit_length() - 1)
+    compression(vine, int(leaf_count))
 
-    inorder_traversal(node.get('left'), nodes)
-    nodes.append(node)
-    inorder_traversal(node.get('right'), nodes)
+    node_count -= leaf_count
+    while node_count > 1:
+        compression(vine, int(node_count // 2))
+        node_count //= 2
 
-def build_balanced_tree(nodes, start, end):
-    if start > end:
-        return None
-
-    mid = (start + end) // 2
-    node = nodes[mid]
-
-    root = {'value': node['value']}
-    root['left'] = build_balanced_tree(nodes, start, mid - 1)
-    root['right'] = build_balanced_tree(nodes, mid + 1, end)
-
-    return root
+    return vine
