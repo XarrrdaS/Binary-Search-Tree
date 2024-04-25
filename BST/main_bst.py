@@ -1,10 +1,10 @@
-from Operations.build_bst import build_bst
-from Operations.in_order import in_order_traversal
-from Operations.pre_order import pre_order_traversal
-from Operations.post_order import post_order_traversal
-from Operations.remove import remove
-from Operations.deleteall import delete
-from Operations.rebalance import rebalance
+from .Operations.build_bst import build_bst
+from .Operations.in_order import in_order_traversal
+from .Operations.pre_order import pre_order_traversal
+from .Operations.post_order import post_order_traversal
+from .Operations.remove import remove
+from .Operations.deleteall import delete
+from .Operations.rebalance import rebalance
 import re
 
 def handle_choice(choice, root):
