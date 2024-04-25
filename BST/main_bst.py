@@ -47,7 +47,7 @@ def handle_choice(choice, root):
 
     return True
 
-if __name__ == "__main__":
+def main_func_bst():
     root = None
 
     print("BST Tree Selected\nWaiting for input...\n> ", end='')

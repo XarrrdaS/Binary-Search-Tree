@@ -6,7 +6,7 @@ from Operations.export import export
 from Operations.rebalance import rebalance
 from Operations.remove import remove
 
-if __name__ == "__main__":
+def main_func_avl():
     root = create_tree()
     
     while True:
@@ -26,6 +26,7 @@ if __name__ == "__main__":
         
         elif choice == '3':
             root = delete(root)
+            print("Deleted tree successfully!")
         
         elif choice == '4':
             export(root)
