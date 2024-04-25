@@ -52,13 +52,12 @@ def main_func_bst():
 
     print("BST Tree Selected\nWaiting for input...\n> ", end='')
     tab = input()
-
+    
     numbers = [int(x) for x in re.split(r'[\s,]+', tab)]
-    print(numbers)
     root = build_bst(numbers)
     
     while True:
-        print("Enter number of your choice: (1. Print, 2. Remove, 3. Delte, 4. Export, 5. Rebalance, 6. Exit)\n> ", end='')
+        print("Enter number of your choice: | 1. Print | 2. Remove | 3. Delte | 4. Export | 5. Rebalance | 6. Exit |\n> ", end='')
         choice = input()
 
         if not handle_choice(choice, root):
