@@ -14,12 +14,9 @@ def main_func_avl():
         choice = input("action > ")
         
         if choice == '1':
-            pre_ordered = pre_order(root)
-            in_ordered = in_order(root)
-            post_ordered = post_order(root)
-            print("Pre-order sort:", pre_ordered)
-            print("In-order sort:", in_ordered)
-            print("Post-order sort:", post_ordered)
+            print("Pre-order sort:", pre_order(root))
+            print("In-order sort:", in_order(root))
+            print("Post-order sort:", post_order(root))
         
         elif choice == '2':
             root = remove(root)
