@@ -11,7 +11,6 @@ if __name__ == "__main__":
     while True:
         print("\n| 1 - Print | 2 - Remove | 3 - Delete | 4 - Export | 5 - Rebalance | 6 - Exit |")
         choice = input("action > ")
-        
         if choice == '1':
             pre_ordered = pre_order(root)
             in_ordered = in_order(root)
@@ -19,21 +18,15 @@ if __name__ == "__main__":
             print("Pre-order sort:", pre_ordered)
             print("In-order sort:", in_ordered)
             print("Post-order sort:", post_ordered)
-        
         elif choice == '2':
             root = remove(root)
-        
         elif choice == '3':
             root = delete(root)
-        
         elif choice == '4':
             export(root)
-        
         elif choice == '5':
             root = rebalance(root)
-
         elif choice == '6':
             exit_func()
-        
         else:
-            print("Invalid choice. Please select a valid option.")
+            print("Select a valid option!")

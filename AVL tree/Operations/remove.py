@@ -1,5 +1,5 @@
 def remove(root):
-    nodes_to_remove = input("Enter nodes to remove (space-separated): ").split()
+    nodes_to_remove = input("Enter nodes to remove: ").split()
     nodes_to_remove = list(map(int, nodes_to_remove))
     for node_value in nodes_to_remove:
         root = remove_node(root, node_value)
