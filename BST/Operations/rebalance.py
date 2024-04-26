@@ -1,3 +1,12 @@
+def compression(root, count):
+    scanner = root
+    for _ in range(count):
+        child = scanner[2]
+        scanner[2] = child[2]
+        scanner = scanner[2]
+        child[2] = scanner[2]
+        scanner[2] = child
+
 def tree_to_vine(root):
     vine_tail = [None, None, None]
     remainder = vine_tail
@@ -16,17 +25,7 @@ def tree_to_vine(root):
 
     return vine_tail[2]
 
-def compression(root, count):
-    scanner = root
-    for _ in range(count):
-        child = scanner[2]
-        scanner[2] = child[2]
-        scanner = scanner[2]
-        child[2] = scanner[1]
-        scanner[1] = child
-
-def rebalance(root):
-    vine = tree_to_vine(root)
+def vine_to_tree(vine):
     node_count = 0
     temp = vine
 
@@ -43,3 +42,8 @@ def rebalance(root):
         node_count //= 2
 
     return vine
+
+def rebalance(root):
+    vine = tree_to_vine(root)
+    tree = vine_to_tree(vine)
+    return tree

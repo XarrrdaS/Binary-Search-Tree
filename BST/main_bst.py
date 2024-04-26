@@ -5,6 +5,7 @@ from .Operations.post_order import post_order_traversal
 from .Operations.remove import remove
 from .Operations.deleteall import delete
 from .Operations.rebalance import rebalance
+from .Operations.minmax import find_min, find_max
 import re
 
 def handle_choice(choice, root):
@@ -39,7 +40,13 @@ def handle_choice(choice, root):
         root = rebalance(root)
 
     elif choice == "6" or choice == "6.":
-        print("Option Exit selected")
+        print("Option min & max selected")
+        print("Minimum value: ", find_min(root))
+        print("Maximum value: ", find_max(root))
+        return False
+    
+    elif choice == "7" or choice == "6.":
+        print("Option Exit selected", end='')
         return False
 
     else:
@@ -57,7 +64,7 @@ def main_func_bst():
     root = build_bst(numbers)
     
     while True:
-        print("Enter number of your choice: | 1. Print | 2. Remove | 3. Delte | 4. Export | 5. Rebalance | 6. Exit |\n> ", end='')
+        print("Enter number of your choice: | 1. Print | 2. Remove | 3. Delte | 4. Export | 5. Rebalance | 6. Find min & max | 7. Exit |\n> ", end='')
         choice = input()
 
         if not handle_choice(choice, root):
