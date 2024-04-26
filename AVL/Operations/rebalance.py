@@ -1,17 +1,17 @@
-def flatten(root):
+def sort_tree(root):
     if not root:
         return []
-    return flatten(root['left']) + [root['key']] + flatten(root['right'])
+    return sort_tree(root['left']) + [root['key']] + sort_tree(root['right'])
 
-def build_balanced(nodes):
+def DSW(nodes):
     if not nodes:
         return None
     mid = len(nodes) // 2
     root = {'key': nodes[mid], 'left': None, 'right': None}
-    root['left'] = build_balanced(nodes[:mid])
-    root['right'] = build_balanced(nodes[mid+1:])
+    root['left'] = DSW(nodes[:mid])
+    root['right'] = DSW(nodes[mid+1:])
     return root
 
 def rebalance(root):
-    nodes = flatten(root)
-    return build_balanced(nodes)
+    nodes = sort_tree(root)
+    return DSW(nodes)
