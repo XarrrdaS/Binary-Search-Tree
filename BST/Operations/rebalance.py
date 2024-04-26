@@ -1,26 +1,38 @@
 def rebalance(root):
-    # Tworzenie listy wierzchołków
+    # Create a list of nodes (including both left and right subtrees)
     nodes = []
-    curr = root['left']
-    while curr is not None:
-        nodes.append(curr)
-        curr = curr['left']
+    def traverse(node):
+        if node is not None:
+            traverse(node['left'])
+            nodes.append(node)
+            traverse(node['right'])
 
-    # Wykonanie rotacji DSW
+    traverse(root)
+
+    # Perform DSW balancing
     n = len(nodes)
-    m = int(2 ** (n.bit_length() - 1) - 1)  # Use int() here
-    curr = root
+    m = int((n - 1) // 2)  # More accurate calculation for middle element(s)
+
     for i in range(m):
-        curr['left'] = nodes[i]
-        curr = curr['left']
-        nodes[i]['right'] = nodes[i + 1] if i + 1 < n else None
+        # Left Rotation (considering both left and right children)
+        temp = nodes[i]['right']
+        nodes[i]['right'] = nodes[i + m + 1]
+        if nodes[i + m + 1]:
+            nodes[i + m + 1]['left'] = temp
 
-    # Przywrócenie równowagi
-    while m > 1:
-        curr = root
-        for i in range(m):
-            curr = curr['left']
-            curr['right'] = nodes[i + m + 1] if i + m + 1 < n else None
-        m //= 2
+        # Right Rotation (considering both left and right children)
+        temp = nodes[i]['left']
+        nodes[i]['left'] = nodes[i - m - 1] if i - m - 1 >= 0 else None
+        if nodes[i - m - 1]:
+            nodes[i - m - 1]['right'] = temp
 
-    return root
+    # Reconstruct the tree from the balanced node list
+    def build_tree(nodes, i):
+        if i >= n:
+            return None
+        node = nodes[i]
+        node['left'] = build_tree(nodes, 2 * i + 1)
+        node['right'] = build_tree(nodes, 2 * i + 2)
+        return node
+
+    return build_tree(nodes, 0)
