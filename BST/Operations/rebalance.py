@@ -1,49 +1,40 @@
-def compression(root, count):
-    scanner = root
-    for _ in range(count):
-        child = scanner[2]
-        scanner[2] = child[2]
-        scanner = scanner[2]
-        child[2] = scanner[2]
-        scanner[2] = child
+def height(root):
+    if root is None:
+        return 0
+    else:
+        left_height = height(root['left'])
+        right_height = height(root['right'])
+        return max(left_height, right_height) + 1
 
-def tree_to_vine(root):
-    vine_tail = [None, None, None]
-    remainder = vine_tail
-    temp_node = None
+def left_rotation(node):
+    new_root = node['right']
+    node['right'] = new_root['left']
+    new_root['left'] = node
+    return new_root
 
-    while remainder is not None:
-        if remainder[1] is None:
-            vine_tail = remainder
-            remainder = remainder[2]
-        else:
-            temp_node = remainder[1]
-            remainder[1] = temp_node[2]
-            temp_node[2] = remainder
-            remainder = temp_node
-            vine_tail[2] = temp_node
-
-    return vine_tail[2]
-
-def vine_to_tree(vine):
-    node_count = 0
-    temp = vine
-
-    while temp is not None:
-        node_count += 1
-        temp = temp[2]
-
-    leaf_count = node_count + 1 - 2 ** (node_count.bit_length() - 1)
-    compression(vine, int(leaf_count))
-
-    node_count -= leaf_count
-    while node_count > 1:
-        compression(vine, int(node_count // 2))
-        node_count //= 2
-
-    return vine
+def right_rotation(node):
+    new_root = node['left']
+    node['left'] = new_root['right']
+    new_root['right'] = node
+    return new_root
 
 def rebalance(root):
-    vine = tree_to_vine(root)
-    tree = vine_to_tree(vine)
-    return tree
+    if root is None:
+        return None
+    left_height = height(root['left'])
+    right_height = height(root['right'])
+
+    if left_height - right_height > 1:
+        if height(root['left']['left']) >= height(root['left']['right']):
+            root = right_rotation(root)
+        else:
+            root['left'] = left_rotation(root['left'])
+            root = right_rotation(root)
+    elif right_height - left_height > 1:
+        if height(root['right']['right']) >= height(root['right']['left']):
+            root = left_rotation(root)
+        else:
+            root['right'] = right_rotation(root['right'])
+            root = left_rotation(root)
+
+    return root
