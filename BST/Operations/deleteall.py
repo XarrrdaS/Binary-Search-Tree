@@ -14,4 +14,4 @@ def delete(root):
     # Usuwanie korzenia
     root['left'] = None
     root['right'] = None
-    root = None
+    return None
