@@ -58,9 +58,12 @@ def main_func_bst():
             print("Minimum value: ", find_min(root))
             print("Maximum value: ", find_max(root))
         
-        elif choice == "7" or choice == "6.":
+        elif choice == "7" or choice == "7.":
             print("Option Exit selected", end='')
             return False
+        
+        elif choice == "66" or choice == "66.":
+            print("Execute order 66!\nComing soon...")
 
         else:
             print("Invalid choice")
