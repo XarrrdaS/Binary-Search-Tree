@@ -109,7 +109,7 @@ def create_tree():
     root = None
     input_values = input("nodes > ").split()
     input_values = list(map(int, input_values))
-    
+    #
     for val in input_values:
         root = insert(root, val)
     
