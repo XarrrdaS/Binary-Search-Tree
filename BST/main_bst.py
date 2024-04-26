@@ -6,6 +6,7 @@ from .Operations.remove import remove
 from .Operations.deleteall import delete
 from .Operations.rebalance import rebalance
 from .Operations.minmax import find_min, find_max
+from .Operations.export import export
 import re
 
 def main_func_bst():
@@ -46,6 +47,7 @@ def main_func_bst():
 
         elif choice == "4" or choice == "4.":
             print("Option Export selected")
+            print(export(root))
 
         elif choice == "5" or choice == "5.":
             print("Option Rebalance selected")
@@ -55,7 +57,6 @@ def main_func_bst():
             print("Option min & max selected")
             print("Minimum value: ", find_min(root))
             print("Maximum value: ", find_max(root))
-            return False
         
         elif choice == "7" or choice == "6.":
             print("Option Exit selected", end='')
